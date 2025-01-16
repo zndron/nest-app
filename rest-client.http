@@ -1,18 +1,18 @@
 GET http://localhost:3000
 
-### Send fetch TASKS REQUEST
-GET http://localhost:3000/tasks
+### Send fetch TASK REQUEST
+GET http://localhost:3000/task
 
-### Send fetch TASKS REQUEST
-GET http://localhost:3000/tasks/
+### Send fetch TASK REQUEST
+GET http://localhost:3000/task/
     ?page=1
     &limit=2
 
-### Find TASKS REQUEST
-GET http://localhost:3000/tasks/1
+### Find TASK REQUEST
+GET http://localhost:3000/task/1
 
-### Create New TASKS REQUEST
-POST http://localhost:3000/tasks
+### Create New TASK REQUEST
+POST http://localhost:3000/task
 Content-Type: application/json
 
 {
@@ -22,13 +22,13 @@ Content-Type: application/json
     "status": "todo"
 }
 
-### Update TASKS REQUEST
-PUT http://localhost:3000/tasks/2
+### Update TASK REQUEST
+PUT http://localhost:3000/task/2
 Content-Type: application/json
 
 {
     "status": "in-progress"
 }
 
-### Delete TASKS REQUEST
-DELETE http://localhost:3000/tasks/1
+### Delete TASK REQUEST
+DELETE http://localhost:3000/task/1

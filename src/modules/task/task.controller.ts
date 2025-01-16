@@ -16,18 +16,18 @@ import {
 } from '@nestjs/common';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Pagination } from 'nestjs-typeorm-paginate';
-import { TasksService } from './tasks.service';
+import { TaskService } from './task.service';
 import { Task } from './task.entity';
 import { CreateTaskDto } from './dto/task.dto';
 import { UpdateTaskDto } from './dto/task.dto';
 
-@Controller('tasks')
-export class TasksController {
-  constructor(private tasksService: TasksService) {}
+@Controller('task')
+export class TaskController {
+  constructor(private taskService: TaskService) {}
 
   @Post()
   create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
-    return this.tasksService.create(createTaskDto);
+    return this.taskService.create(createTaskDto);
   }
 
   @Get()
@@ -38,7 +38,7 @@ export class TasksController {
     limit = 10,
   ): Promise<Pagination<Task>> {
     limit = limit > 100 ? 100 : limit;
-    return this.tasksService.paginate({
+    return this.taskService.paginate({
       page,
       limit,
     });
@@ -52,7 +52,7 @@ export class TasksController {
     )
     id: number,
   ): Promise<Task> {
-    return this.tasksService.findOne(id);
+    return this.taskService.findOne(id);
   }
 
   @Put(':id')
@@ -60,27 +60,27 @@ export class TasksController {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateTaskDto: UpdateTaskDto,
   ): Promise<UpdateResult> {
-    return this.tasksService.update(id, updateTaskDto);
+    return this.taskService.update(id, updateTaskDto);
   }
 
   @Delete(':id')
   delete(@Param('id', ParseIntPipe) id: number): Promise<DeleteResult> {
-    return this.tasksService.remove(id);
+    return this.taskService.remove(id);
   }
 
   // @Get()
-  // getAllTasks(): Task[] {
-  //   return this.tasksService.getAllTasks();
+  // getAllTask(): Task[] {
+  //   return this.taskService.getAllTask();
   // }
 
   // @Get(':id')
   // getTaskById(@Param('id') id: string): Task {
-  //   return this.tasksService.getTaskById(id);
+  //   return this.taskService.getTaskById(id);
   // }
 
   // @Post()
   // createTask(@Body() createTaskDto: CreateTaskDto): Task {
-  //   return this.tasksService.createTask(createTaskDto);
+  //   return this.taskService.createTask(createTaskDto);
   // }
 
   // @Patch(':id')
@@ -88,11 +88,11 @@ export class TasksController {
   //   @Param('id') id: number,
   //   @Body() updateTaskDto: UpdateTaskDto,
   // ): Task {
-  //   return this.tasksService.updateTask(id, updateTaskDto);
+  //   return this.taskService.updateTask(id, updateTaskDto);
   // }
 
   // @Delete(':id')
   // deleteTask(@Param('id') id: string): void {
-  //   this.tasksService.deleteTask(id);
+  //   this.taskService.deleteTask(id);
   // }
 }

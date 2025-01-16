@@ -1,11 +1,11 @@
 import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TasksModule } from './tasks/tasks.module';
+import { TaskModule } from './modules/task/task.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Task } from './tasks/task.entity';
+import { Task } from './modules/task/task.entity';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
-import { TasksController } from './tasks/tasks.controller'
+import { TaskController } from './modules/task/task.controller'
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { TasksController } from './tasks/tasks.controller'
       entities: [Task],
       synchronize: true,
     }),
-    TasksModule
+    TaskModule
   ],
   controllers: [AppController],
   providers: [AppService],
@@ -31,6 +31,6 @@ export class AppModule implements NestModule {
     //   .apply(LoggerMiddleware)
     //   .forRoutes({ path: 'songs', method: RequestMethod.POST }); //option no 2
 
-    consumer.apply(LoggerMiddleware).forRoutes(TasksController); //option no 3
+    consumer.apply(LoggerMiddleware).forRoutes(TaskController); //option no 3
   }
 }

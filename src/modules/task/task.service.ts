@@ -12,10 +12,10 @@ import { UpdateTaskDto } from './dto/task.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class TasksService {
+export class TaskService {
   constructor(
     @InjectRepository(Task)
-    private tasksRepository: Repository<Task>,
+    private taskRepository: Repository<Task>,
   ) {}
 
 
@@ -26,38 +26,38 @@ export class TasksService {
     task.description = createTaskDto.description;
     task.status = createTaskDto.status;
 
-    return this.tasksRepository.save(task);
+    return this.taskRepository.save(task);
   }
 
   findAll(): Promise<Task[]> {
-    return this.tasksRepository.find();
+    return this.taskRepository.find();
   }
 
   findOne(id: number): Promise<Task> {
-    return this.tasksRepository.findOneBy({ id });
+    return this.taskRepository.findOneBy({ id });
   }
 
   remove(id: number): Promise<DeleteResult> {
-    return this.tasksRepository.delete(id);
+    return this.taskRepository.delete(id);
   }
 
   update(id: number, recordToUpdate: UpdateTaskDto): Promise<UpdateResult> {
-    return this.tasksRepository.update(id, recordToUpdate);
+    return this.taskRepository.update(id, recordToUpdate);
   }
 
   async paginate(options: IPaginationOptions): Promise<Pagination<Task>> {
-    const queryBuilder = this.tasksRepository.createQueryBuilder('c');
+    const queryBuilder = this.taskRepository.createQueryBuilder('c');
     queryBuilder.orderBy('c.id', 'DESC');
 
     return paginate<Task>(queryBuilder, options);
   }
 
-  // getAllTasks(): Task[] {
-  //   return this.tasks;
+  // getAllTask(): Task[] {
+  //   return this.task;
   // }
 
   // getTaskById(id: number): Task {
-  //   return this.tasks.find((task) => task.id === id);
+  //   return this.task.find((task) => task.id === id);
   // }
 
   // createTask(createTaskDto: CreateTaskDto): Task {
@@ -71,7 +71,7 @@ export class TasksService {
   //     status,,
   //   };
 
-  //   this.tasks.push(task);
+  //   this.task.push(task);
   //   return task;
   // }
 
@@ -82,6 +82,6 @@ export class TasksService {
   // }
 
   // deleteTask(id: number): void {
-  //   this.tasks = this.tasks.filter((task) => task.id !== id);
+  //   this.task = this.task.filter((task) => task.id !== id);
   // }
 }
