@@ -4,7 +4,7 @@ import {
   IsString,
 } from 'class-validator';
 
-export class UpdateTaskDto {
+export class CreateTaskDto {
   @IsString()
   @IsNotEmpty()
   readonly uuid: string;
@@ -21,4 +21,5 @@ export class UpdateTaskDto {
   @IsOptional()
   readonly status;
 }
-  
+
+export class UpdateTaskDto extends CreateTaskDto {}

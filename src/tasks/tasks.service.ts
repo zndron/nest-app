@@ -7,8 +7,8 @@ import {
 } from 'nestjs-typeorm-paginate';
 
 import { Task } from './task.entity';
-import { CreateTaskDto } from './dto/create-task-dto';
-import { UpdateTaskDto } from './dto/update-task-dto';
+import { CreateTaskDto } from './dto/task.dto';
+import { UpdateTaskDto } from './dto/task.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()

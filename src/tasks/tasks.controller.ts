@@ -18,8 +18,8 @@ import { DeleteResult, UpdateResult } from 'typeorm';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { TasksService } from './tasks.service';
 import { Task } from './task.entity';
-import { CreateTaskDto } from './dto/create-task-dto';
-import { UpdateTaskDto } from './dto/update-task-dto';
+import { CreateTaskDto } from './dto/task.dto';
+import { UpdateTaskDto } from './dto/task.dto';
 
 @Controller('tasks')
 export class TasksController {
