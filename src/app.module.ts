@@ -1,11 +1,11 @@
 import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TaskModule } from './modules/task/task.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Task } from './modules/task/task.entity';
-import { LoggerMiddleware } from './common/middleware/logger.middleware';
-import { TaskController } from './modules/task/task.controller'
+import { Task } from './tasks/task.entity';
+import { TasksModule } from './tasks/tasks.module';
+import { UsersModule } from './users/users.module';
+import { ProjectsModule } from './projects/projects.module';
 
 @Module({
   imports: [
@@ -19,18 +19,12 @@ import { TaskController } from './modules/task/task.controller'
       entities: [Task],
       synchronize: true,
     }),
-    TaskModule
+    TasksModule,
+    UsersModule,
+    ProjectsModule
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    // consumer.apply(LoggerMiddleware).forRoutes('songs'); // option no 1
-    // consumer
-    //   .apply(LoggerMiddleware)
-    //   .forRoutes({ path: 'songs', method: RequestMethod.POST }); //option no 2
 
-    consumer.apply(LoggerMiddleware).forRoutes(TaskController); //option no 3
-  }
-}
+export class AppModule {}

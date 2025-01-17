@@ -12,7 +12,7 @@ import { UpdateTaskDto } from './dto/task.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class TaskService {
+export class TasksService {
   constructor(
     @InjectRepository(Task)
     private taskRepository: Repository<Task>,
@@ -52,36 +52,4 @@ export class TaskService {
     return paginate<Task>(queryBuilder, options);
   }
 
-  // getAllTask(): Task[] {
-  //   return this.task;
-  // }
-
-  // getTaskById(id: number): Task {
-  //   return this.task.find((task) => task.id === id);
-  // }
-
-  // createTask(createTaskDto: CreateTaskDto): Task {
-  //   const { title, description } = createTaskDto;
-
-  //   const task: Task = {
-  //     id,
-  //     uuid: uuidv4(),
-  //     title,
-  //     description,
-  //     status,,
-  //   };
-
-  //   this.task.push(task);
-  //   return task;
-  // }
-
-  // updateTask(id: number, updateTaskDto: UpdateTaskDto): Task {
-  //   const task = this.getTaskById(id);
-  //   Object.assign(task, updateTaskDto);
-  //   return task;
-  // }
-
-  // deleteTask(id: number): void {
-  //   this.task = this.task.filter((task) => task.id !== id);
-  // }
 }
