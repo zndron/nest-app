@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import {
   paginate,
@@ -18,31 +18,32 @@ export class TasksService {
     private taskRepository: Repository<Task>,
   ) {}
 
-
-  create(createTaskDto: CreateTaskDto): Promise<Task> {
-    const task = new Task();
-    task.uuid = createTaskDto.uuid;
-    task.title = createTaskDto.title;
-    task.description = createTaskDto.description;
-    task.status = createTaskDto.status;
-
-    return this.taskRepository.save(task);
-  }
-
   findAll(): Promise<Task[]> {
     return this.taskRepository.find();
   }
 
-  findOne(id: number): Promise<Task> {
+  findOne(id: number): Promise<Task | null> {
     return this.taskRepository.findOneBy({ id });
   }
 
-  remove(id: number): Promise<DeleteResult> {
-    return this.taskRepository.delete(id);
+  async remove(id: number): Promise<void> {
+    await this.taskRepository.delete(id);
   }
 
-  update(id: number, recordToUpdate: UpdateTaskDto): Promise<UpdateResult> {
-    return this.taskRepository.update(id, recordToUpdate);
+  create(createTaskDto: CreateTaskDto): Promise<Task> {
+    const task = this.taskRepository.create(createTaskDto);
+    return this.taskRepository.save(task);
+  }
+
+  async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    const task = await this.taskRepository.preload({
+      id: +id,
+      ...updateTaskDto
+    });
+    if (!task) {
+      throw new NotFoundException(`Task #${id} not found`)
+    }
+    return this.taskRepository.save(task);
   }
 
   async paginate(options: IPaginationOptions): Promise<Pagination<Task>> {

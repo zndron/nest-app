@@ -6,6 +6,7 @@ import { Task } from './tasks/task.entity';
 import { TasksModule } from './tasks/tasks.module';
 import { UsersModule } from './users/users.module';
 import { ProjectsModule } from './projects/projects.module';
+import { Project } from './projects/project.entity';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { ProjectsModule } from './projects/projects.module';
       username: 'root',
       password: '[password]',
       database: 'c1nodejs',
-      entities: [Task],
+      entities: [Task, Project],
+      //autoLoadEntities: true, // only on development mode
       synchronize: true,
     }),
     TasksModule,

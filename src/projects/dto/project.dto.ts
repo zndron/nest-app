@@ -1,12 +1,10 @@
 import {
-  IsInt,
   IsNotEmpty,
-  IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
 
-export class CreateTaskDto {
+export class CreateProjectDto {
   @IsString()
   @IsOptional()
   readonly title?: string;
@@ -14,14 +12,6 @@ export class CreateTaskDto {
   @IsString()
   @IsOptional()
   readonly description?: string;
-
-  @IsString()
-  @IsOptional()
-  readonly status;
-
-  @IsNumber()
-  @IsOptional()
-  project_id;
 }
 
-export class UpdateTaskDto extends CreateTaskDto {}
+export class UpdateProjectDto extends CreateProjectDto {}

@@ -59,12 +59,12 @@ export class TasksController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateTaskDto: UpdateTaskDto,
-  ): Promise<UpdateResult> {
+  ): Promise<Task> {
     return this.taskService.update(id, updateTaskDto);
   }
 
   @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: number): Promise<DeleteResult> {
+  delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.taskService.remove(id);
   }
 }

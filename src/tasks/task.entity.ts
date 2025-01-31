@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, Generated } from 'typeorm';
+import { Project } from 'src/projects/project.entity';
+import { Entity, Column, PrimaryGeneratedColumn, Generated, JoinColumn, ManyToOne } from 'typeorm';
 
 export enum TaskStatus {
   TODO = 'todo',
@@ -12,10 +13,6 @@ export class Task {
   id: number
 
   @Column()
-    @Generated('uuid')
-    uuid: string
-
-  @Column()
   title: string
 
   @Column('text')
@@ -26,5 +23,14 @@ export class Task {
     enum: TaskStatus,
     default: TaskStatus.TODO,
   })
-  status: TaskStatus
+  status: TaskStatus;
+
+  @Column({
+    nullable: true,
+  })
+  project_id: string;
+
+  @ManyToOne(() => Project, (project) => project.tasks)
+  @JoinColumn({ name: 'project_id' })
+  project: Project;
 }

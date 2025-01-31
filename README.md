@@ -7,7 +7,7 @@ $ npm install
 ## Compile and run the project
 
 ```bash
-# development
+# development mode
 $ npm run start
 
 # watch mode
