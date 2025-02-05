@@ -27,6 +27,27 @@ export class ProjectsController {
 
     @Post()
     create(@Body() createProjectDto: CreateProjectDto): Promise<Project> {
-    return this.projectService.create(createProjectDto);
+      return this.projectService.create(createProjectDto);
     }
+
+  @Get()
+  findAll() {
+    return this.projectService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: number,
+  ) {
+    return this.projectService.findOne({
+      relations: {
+        tasks: true
+      },
+      where: { id },
+    });
+  }
 }
