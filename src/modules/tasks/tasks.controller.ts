@@ -23,7 +23,7 @@ import { UpdateTaskDto } from './dto/task.dto';
 
 @Controller('tasks')
 export class TasksController {
-  constructor(private taskService: TasksService) {}
+  constructor(private readonly taskService: TasksService) {}
 
   @Post()
   create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {

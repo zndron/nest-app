@@ -133,3 +133,19 @@ ctrl + c
 
 5. **Фільтрація**:
    - Завдання за користувачем, проєктом, статусом або пріоритетом.
+
+
+## Typeorm
+
+```bash
+# generate migration
+$ npm run migration:generate --  src/database/migrations/NewMigrations
+
+# run migration
+$ npm run migration:run
+
+# schema log
+$ typeorm schema:log -d dist/db/data-source.js
+```
+
+

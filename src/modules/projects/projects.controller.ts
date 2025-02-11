@@ -23,7 +23,7 @@ import {
 
 @Controller('projects')
 export class ProjectsController {
-    constructor(private projectService: ProjectsService) {}
+    constructor(private readonly projectService: ProjectsService) {}
 
     @Post()
     create(@Body() createProjectDto: CreateProjectDto): Promise<Project> {

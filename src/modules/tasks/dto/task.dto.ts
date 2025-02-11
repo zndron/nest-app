@@ -21,7 +21,7 @@ export class CreateTaskDto {
 
   @IsNumber()
   @IsOptional()
-  project_id;
+  projectId;
 }
 
 export class UpdateTaskDto extends CreateTaskDto {}
