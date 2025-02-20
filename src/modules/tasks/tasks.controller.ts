@@ -13,6 +13,7 @@ import {
   Scope,
   Query,
   DefaultValuePipe,
+  UseGuards
 } from '@nestjs/common';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Pagination } from 'nestjs-typeorm-paginate';
@@ -20,7 +21,9 @@ import { TasksService } from './tasks.service';
 import { Task } from './task.entity';
 import { CreateTaskDto } from './dto/task.dto';
 import { UpdateTaskDto } from './dto/task.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('tasks')
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}

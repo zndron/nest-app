@@ -144,8 +144,11 @@ $ npm run migration:generate --  src/database/migrations/migration
 # run migration
 $ npm run migration:run
 
+# revert migration
+$ npm run migration:revert
+
 # schema log
-$ typeorm schema:log -d dist/db/data-source.js
+$ typeorm schema:log -d dist/database/data-source.js
 ```
 
 

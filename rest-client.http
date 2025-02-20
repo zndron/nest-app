@@ -2,17 +2,21 @@ GET http://localhost:3000
 
 ### Send fetch task REQUEST
 GET http://localhost:3000/tasks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjo5LCJpYXQiOjE3NDAwNjAyNjIsImV4cCI6MTc0MDE0NjY2Mn0.ZnkouId8CNeNKRPfygH_i8jY5yL_9dh_12anEvHAScA
 
 ### Send fetch task REQUEST
 GET http://localhost:3000/tasks/
     ?page=1
     &limit=100
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjo5LCJpYXQiOjE3NDAwNjAyNjIsImV4cCI6MTc0MDE0NjY2Mn0.ZnkouId8CNeNKRPfygH_i8jY5yL_9dh_12anEvHAScA
 
 ### Find task REQUEST
 GET http://localhost:3000/tasks/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjo5LCJpYXQiOjE3NDAwNjAyNjIsImV4cCI6MTc0MDE0NjY2Mn0.ZnkouId8CNeNKRPfygH_i8jY5yL_9dh_12anEvHAScA
 
 ### Create new task REQUEST
 POST http://localhost:3000/tasks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjo5LCJpYXQiOjE3NDAwNjAyNjIsImV4cCI6MTc0MDE0NjY2Mn0.ZnkouId8CNeNKRPfygH_i8jY5yL_9dh_12anEvHAScA
 Content-Type: application/json
 
 {
@@ -23,6 +27,7 @@ Content-Type: application/json
 
 ### Update task REQUEST
 PUT http://localhost:3000/tasks/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjo5LCJpYXQiOjE3NDAwNjAyNjIsImV4cCI6MTc0MDE0NjY2Mn0.ZnkouId8CNeNKRPfygH_i8jY5yL_9dh_12anEvHAScA
 Content-Type: application/json
 
 {
@@ -32,15 +37,19 @@ Content-Type: application/json
 
 ### Delete task REQUEST
 DELETE http://localhost:3000/tasks/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjo5LCJpYXQiOjE3NDAwNjAyNjIsImV4cCI6MTc0MDE0NjY2Mn0.ZnkouId8CNeNKRPfygH_i8jY5yL_9dh_12anEvHAScA
 
 ### Send fetch projects REQUEST
 GET http://localhost:3000/projects
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjoxLCJpYXQiOjE3NDAwNjM0NjEsImV4cCI6MTc0MDE0OTg2MX0.IJOZn1PZq71jOPeHg05hp7kND5gUOa8O2hFGL3LEXvg
 
 ### Find projects REQUEST
 GET http://localhost:3000/projects/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjo5LCJpYXQiOjE3NDAwNjAyNjIsImV4cCI6MTc0MDE0NjY2Mn0.ZnkouId8CNeNKRPfygH_i8jY5yL_9dh_12anEvHAScA
 
 ### Create new projects REQUEST
 POST http://localhost:3000/projects
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjo5LCJpYXQiOjE3NDAwNjAyNjIsImV4cCI6MTc0MDE0NjY2Mn0.ZnkouId8CNeNKRPfygH_i8jY5yL_9dh_12anEvHAScA
 Content-Type: application/json
 
 {
@@ -49,22 +58,26 @@ Content-Type: application/json
 }
 
 
-### Create new user REQUEST
+### Signup User
 POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "test@test.com",
-    "password": "test",
-    "firstName": "test",  
-    "lastName": "test"
+    "email": "john@gmail.com",
+    "password": "123456",
+    "firstName": "john",  
+    "lastName": "doe"
 }
 
-### Login user REQUEST
+### Login User
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@test.com",
-    "password": "test"
+    "email": "john@gmail.com",
+    "password": "123456"
 }
+
+### Profile
+GET http://localhost:3000/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjoxLCJpYXQiOjE3NDAwNjM0NjEsImV4cCI6MTc0MDE0OTg2MX0.IJOZn1PZq71jOPeHg05hp7kND5gUOa8O2hFGL3LEXvg

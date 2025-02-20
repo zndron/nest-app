@@ -9,6 +9,7 @@ import {
     Param,
     ParseIntPipe,
     Body,
+    UseGuards,
     Inject,
     Scope,
     Query,
@@ -20,7 +21,9 @@ import {
   import { Project } from './project.entity';
   import { CreateProjectDto } from './dto/project.dto';
   import { UpdateProjectDto } from './dto/project.dto';
+  import { AuthGuard } from '../auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('projects')
 export class ProjectsController {
   constructor(private readonly projectService: ProjectsService) {}
