@@ -23,11 +23,11 @@ import { UpdateTaskDto } from './dto/task.dto';
 
 @Controller('tasks')
 export class TasksController {
-  constructor(private readonly taskService: TasksService) {}
+  constructor(private readonly tasksService: TasksService) {}
 
   @Post()
   create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
-    return this.taskService.create(createTaskDto);
+    return this.tasksService.create(createTaskDto);
   }
 
   @Get()
@@ -38,7 +38,7 @@ export class TasksController {
     limit = 10,
   ): Promise<Pagination<Task>> {
     limit = limit > 100 ? 100 : limit;
-    return this.taskService.paginate({
+    return this.tasksService.paginate({
       page,
       limit,
     });
@@ -52,7 +52,7 @@ export class TasksController {
     )
     id: number,
   ): Promise<Task> {
-    return this.taskService.findOne(id);
+    return this.tasksService.findOne(id);
   }
 
   @Put(':id')
@@ -60,11 +60,11 @@ export class TasksController {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateTaskDto: UpdateTaskDto,
   ): Promise<Task> {
-    return this.taskService.update(id, updateTaskDto);
+    return this.tasksService.update(id, updateTaskDto);
   }
 
   @Delete(':id')
   delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
-    return this.taskService.remove(id);
+    return this.tasksService.remove(id);
   }
 }

@@ -23,12 +23,12 @@ import {
 
 @Controller('projects')
 export class ProjectsController {
-    constructor(private readonly projectService: ProjectsService) {}
+  constructor(private readonly projectService: ProjectsService) {}
 
-    @Post()
-    create(@Body() createProjectDto: CreateProjectDto): Promise<Project> {
-      return this.projectService.create(createProjectDto);
-    }
+  @Post()
+  create(@Body() createProjectDto: CreateProjectDto): Promise<Project> {
+    return this.projectService.create(createProjectDto);
+  }
 
   @Get()
   findAll() {

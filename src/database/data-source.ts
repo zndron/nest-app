@@ -27,13 +27,16 @@ export const typeOrmModuleAsyncOptions: TypeOrmModuleAsyncOptions = {
   useFactory: async (): Promise<TypeOrmModuleOptions> => {
     return {
       type: 'mysql',
+      timezone: '+00:00',
       host: configService.get<string>('DB_HOST'),
       port: configService.get<number>('DB_PORT'),
       username: configService.get<string>('DB_USER'),
       password: configService.get<string>('DB_PASSWORD'),
       database: configService.get<string>('DB_DATABASE'),
       entities: [__dirname + '/../**/*.entity.{js,ts}'],
+      autoLoadEntities: true,
       migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
+      migrationsTableName: 'migrations',
       synchronize: false,
       logging: true,
     };

@@ -139,7 +139,7 @@ ctrl + c
 
 ```bash
 # generate migration
-$ npm run migration:generate --  src/database/migrations/NewMigrations
+$ npm run migration:generate --  src/database/migrations/migration
 
 # run migration
 $ npm run migration:run
